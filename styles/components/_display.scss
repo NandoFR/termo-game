@@ -1,0 +1,230 @@
+.app-display {
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  .phrase {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+
+    .word {
+      font-weight: bold;
+      font-size: 50px;
+      border-radius: 10px;
+      border: 4px solid $background-light;
+      width: 82px;
+      height: 82px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $background-light;
+
+      @keyframes currentAnimation {
+        0% {
+          transform: translate(0);
+        }
+
+        10% {
+          transform: translate(-2px, -2px);
+        }
+
+        20% {
+          transform: translate(2px, -2px);
+        }
+
+        30% {
+          transform: translate(-2px, 2px);
+        }
+
+        40% {
+          transform: translate(2px, 2px);
+        }
+
+        50% {
+          transform: translate(-2px, -2px);
+        }
+
+        60% {
+          transform: translate(2px, -2px);
+        }
+
+        70% {
+          transform: translate(-2px, 2px);
+        }
+
+        80% {
+          transform: translate(-2px, -2px);
+        }
+
+        90% {
+          transform: translate(2px, -2px);
+        }
+
+        100% {
+          transform: translate(0);
+        }
+      }
+
+      @keyframes changeMode {
+        0% {
+          transform: rotateX(90deg);
+          transform: scale(0);
+        }
+        100% {
+          transform: rotate(0deg);
+          transform: scale(1);
+        }
+      }
+
+      &.success,
+      &.alert,
+      &.error {
+        animation: changeMode 1s ease 0s 1 normal forwards;
+        transform: rotate(-10deg);
+        transform: scale(0.1);
+      }
+
+      &.success {
+        border: 4px solid $success;
+        background-color: $success;
+      }
+
+      &.alert {
+        border: 4px solid $alert;
+        background-color: $alert;
+      }
+
+      &.error {
+        border: 4px solid $error;
+        background-color: $error;
+      }
+
+      &.current {
+        border: 4px solid $input;
+        animation: currentAnimation 4s ease 0s infinite normal forwards;
+      }
+    }
+
+    &.max-6 {
+      .word {
+        @media (max-width: 680px) {
+          font-size: 30px;
+
+          width: 70px;
+          height: 70px;
+        }
+        @media (max-width: 447px) {
+          font-size: 30px;
+
+          width: 52px;
+          height: 52px;
+        }
+      }
+    }
+    &.max-7 {
+      .word {
+        @media (max-width: 876px) {
+          font-size: 30px;
+
+          width: 70px;
+          height: 70px;
+        }
+        @media (max-width: 680px) {
+          font-size: 30px;
+
+          width: 60px;
+          height: 60px;
+        }
+        @media (max-width: 447px) {
+          font-size: 30px;
+
+          width: 45px;
+          height: 45px;
+        }
+      }
+    }
+    &.max-8 {
+      .word {
+        @media (max-width: 876px) {
+          font-size: 30px;
+
+          width: 60px;
+          height: 60px;
+        }
+        @media (max-width: 680px) {
+          font-size: 30px;
+
+          width: 50px;
+          height: 50px;
+        }
+        @media (max-width: 447px) {
+          font-size: 25px;
+
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+    &.max-9 {
+      .word {
+        @media (max-width: 876px) {
+          font-size: 30px;
+
+          width: 60px;
+          height: 60px;
+        }
+        @media (max-width: 680px) {
+          font-size: 30px;
+
+          width: 45px;
+          height: 45px;
+        }
+        @media (max-width: 447px) {
+          font-size: 25px;
+
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+
+    &.max-10 {
+      .word {
+        @media (max-width: 876px) {
+          font-size: 30px;
+
+          width: 60px;
+          height: 60px;
+        }
+        @media (max-width: 680px) {
+          font-size: 30px;
+
+          width: 38px;
+          height: 38px;
+        }
+
+        @media (max-width: 447px) {
+          font-size: 20px;
+
+          width: 31px;
+          height: 31px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 447px) {
+    .phrase {
+      .word {
+        font-size: 30px;
+
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.app-won {
+  text-align: center;
+
+  &.lose {
+    p {
+      b {
+        color: $lose;
+      }
+    }
+
+    button {
+      background-color: $lose;
+    }
+  }
+  p {
+    margin-top: 10px;
+    margin-bottom: 60px;
+
+    b {
+      font-size: 1.3em;
+      color: $success;
+    }
+  }
+
+  button {
+    border-radius: 32px;
+    padding: 10px 30px;
+    background-color: $success;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
