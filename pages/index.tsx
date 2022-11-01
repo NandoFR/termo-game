@@ -1,7 +1,7 @@
 import React from "react";
 import { WordContext } from "../context/WordContext";
 import { useRouter } from "next/router";
-const selecionar = () => {
+const Selecionar = () => {
   const [selectedLetter, setSelectedLetter] = React.useState("5");
   const [selectedAttempt, setSelectedAttempt] = React.useState("5");
   const { setWord, setMaxAttempt, setMaxLetters } =
