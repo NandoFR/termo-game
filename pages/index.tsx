@@ -141,4 +141,4 @@ const Selecionar = () => {
   );
 };
 
-export default selecionar;
+export default Selecionar;
