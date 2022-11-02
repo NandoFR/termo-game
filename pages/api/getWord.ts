@@ -12,27 +12,31 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { length } = JSON.parse(req.body);
-  console.log(length);
+  try {
+    const { length } = JSON.parse(req.body);
 
-  if (!length) {
+    if (!length) {
+      //@ts-ignore
+      return res.status(400).json("error");
+    }
+    const prisma = new PrismaClient();
+
+    const word = await prisma.word.findMany({
+      where: {
+        length: Number(length),
+      },
+    });
+
+    if (!word) {
+      //@ts-ignore
+      return res.status(400).json("error");
+    }
+    const key = randomInt(word.length);
+
     //@ts-ignore
-    return res.status(400).json("error");
-  }
-  const prisma = new PrismaClient();
-
-  const word = await prisma.word.findMany({
-    where: {
-      length: Number(length),
-    },
-  });
-
-  if (!word) {
+    res.status(200).json({ word: word[key], length });
+  } catch (e) {
     //@ts-ignore
-    return res.status(400).json("error");
+    res.status(400).json(e);
   }
-  const key = randomInt(word.length);
-
-  //@ts-ignore
-  res.status(200).json({ word: word[key], length });
 }
