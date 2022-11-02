@@ -121,8 +121,11 @@ const Selecionar = () => {
               length: selectedLetter,
             }),
           });
+          if (data.status !== 200) {
+            console.log("error");
+            return;
+          }
           data = await data.json();
-
           //@ts-ignore
           if (data.word) {
             //@ts-ignore

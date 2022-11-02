@@ -13,9 +13,11 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const { length } = JSON.parse(req.body);
+  console.log(length);
 
   if (!length) {
-    return res.status(400);
+    //@ts-ignore
+    return res.status(400).json("error");
   }
   const prisma = new PrismaClient();
 
@@ -25,6 +27,10 @@ export default async function handler(
     },
   });
 
+  if (!word) {
+    //@ts-ignore
+    return res.status(400).json("error");
+  }
   const key = randomInt(word.length);
 
   //@ts-ignore
