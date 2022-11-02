@@ -30,7 +30,6 @@ const Game = ({ word, letter, attempt }: IGame) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log(context.query);
   const { letter, attempt } = context.query;
   if (!letter || !attempt) {
     return {
@@ -41,13 +40,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const prisma = new PrismaClient();
-  const word = await prisma.word.findMany({
-    where: {
-      length: Number(letter),
-    },
-  });
-
+  // const prisma = new PrismaClient();
+  // const word = await prisma.word.findMany({
+  //   where: {
+  //     length: Number(letter),
+  //   },
+  // });
+  let word = "carro";
   if (!word) {
     return {
       redirect: {
@@ -57,11 +56,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const key = randomInt(word.length);
+  // const key = randomInt(word.length);
 
   return {
     props: {
-      word: word[key].name,
+      word,
       attempt,
       letter,
     }, // will be passed to the page component as props
