@@ -1,12 +1,8 @@
 import React from "react";
-import { WordContext } from "../context/WordContext";
-import { useRouter } from "next/router";
+import Link from "next/link";
 const Selecionar = () => {
   const [selectedLetter, setSelectedLetter] = React.useState("5");
   const [selectedAttempt, setSelectedAttempt] = React.useState("5");
-  const { setWord, setMaxAttempt, setMaxLetters } =
-    React.useContext(WordContext);
-  const router = useRouter();
 
   React.useEffect(() => {
     const allLetters = document.querySelectorAll(
@@ -113,34 +109,9 @@ const Selecionar = () => {
         </button>
       </div>
 
-      <button
-        onClick={async () => {
-          let data = await fetch("/api/getWord", {
-            method: "POST",
-            body: JSON.stringify({
-              length: selectedLetter,
-            }),
-          });
-          if (data.status !== 200) {
-            console.log(await data.json());
-            console.log("error");
-            return;
-          }
-          data = await data.json();
-          //@ts-ignore
-          if (data.word) {
-            //@ts-ignore
-            setWord(data.word.name);
-            //@ts-ignore
-            setMaxLetters(data.word.length);
-            setMaxAttempt(Number(selectedAttempt));
-            router.push("/jogo");
-          }
-        }}
-        className="play"
-      >
-        Jogar
-      </button>
+      <Link href={`/jogo?letter=${selectedLetter}&attempt=${selectedAttempt}`}>
+        <button className="play">Jogar</button>
+      </Link>
     </div>
   );
 };
