@@ -122,6 +122,7 @@ const Selecionar = () => {
             }),
           });
           if (data.status !== 200) {
+            console.log(await data.json());
             console.log("error");
             return;
           }
