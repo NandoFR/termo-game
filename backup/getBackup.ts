@@ -11,7 +11,10 @@ import { PrismaClient } from "@prisma/client";
     if (!value) break;
     console.log(value);
     await prisma.word.create({
-      data: value,
+      data: {
+        name: value.name,
+        length: value.length,
+      },
     });
   }
 })();
