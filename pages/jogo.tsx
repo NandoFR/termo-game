@@ -6,7 +6,8 @@ import { WordContext } from "../context/WordContext";
 import { GetServerSideProps } from "next";
 import { PrismaClient } from "@prisma/client";
 import { randomInt } from "crypto";
-
+import { Word } from "../database/Word";
+import mongoose from "mongoose";
 interface IGame {
   word: String;
   letter: String;
@@ -30,6 +31,8 @@ const Game = ({ word, letter, attempt }: IGame) => {
   );
 };
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  await mongoose.connect(process.env.DATABASE_URL!);
+
   const { letter, attempt } = context.query;
   if (!letter || !attempt) {
     return {
@@ -39,14 +42,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+  const word = await Word.find().where("length").equals(letter);
+  const key = randomInt(word.length);
 
-  // const prisma = new PrismaClient();
-  // const word = await prisma.word.findMany({
-  //   where: {
-  //     length: Number(letter),
-  //   },
-  // });
-  let word = "carro";
   if (!word) {
     return {
       redirect: {
@@ -55,12 +53,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-
-  // const key = randomInt(word.length);
-
+  await mongoose.disconnect();
   return {
     props: {
-      word,
+      word: word[key].name,
       attempt,
       letter,
     }, // will be passed to the page component as props

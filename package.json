@@ -8,12 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "bot": "ts-node bot/getAll.ts",
-    "backup-run": "ts-node backup/runBackup.ts",
-    "backup-get": "ts-node backup/getBackup.ts"
+    "seed": "ts-node database/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^4.5.0",
     "@vorlefan/prisma-backup": "^0.3.5",
+    "mongoose": "^6.7.1",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -22,6 +22,7 @@
     "@types/node": "18.11.5",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",
+    "dotenv": "^16.0.3",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.0",
     "prisma": "^4.5.0",
