@@ -29,9 +29,21 @@
     margin-top: 60px;
     align-self: flex-end;
 
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
     &:disabled {
-      background-color: $lose;
-      opacity: 0.8;
+      background-color: rgb(201, 193, 193);
+      cursor: wait;
+      i {
+        animation: spin 1s infinite linear;
+        margin-left: 10px;
+      }
     }
   }
   .group {

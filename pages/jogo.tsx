@@ -4,10 +4,10 @@ import Keyboard from "../components/Keyboard";
 import { useContext, useEffect } from "react";
 import { WordContext } from "../context/WordContext";
 import { GetServerSideProps } from "next";
-import { PrismaClient } from "@prisma/client";
 import { randomInt } from "crypto";
 import { Word } from "../database/Word";
 import mongoose from "mongoose";
+
 interface IGame {
   word: String;
   letter: String;

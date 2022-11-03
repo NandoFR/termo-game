@@ -15,4 +15,5 @@ const WordSchema = new mongoose.Schema<IWord>({
   },
 });
 
-export const Word = mongoose.model<IWord>("Word", WordSchema);
+export const Word =
+  mongoose.models.Word || mongoose.model<IWord>("Word", WordSchema);

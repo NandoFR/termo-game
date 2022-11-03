@@ -3,7 +3,7 @@ import Link from "next/link";
 const Selecionar = () => {
   const [selectedLetter, setSelectedLetter] = React.useState("5");
   const [selectedAttempt, setSelectedAttempt] = React.useState("5");
-
+  const [loading, setLoading] = React.useState(false);
   React.useEffect(() => {
     const allLetters = document.querySelectorAll(
       ".app-form > .group > .letter"
@@ -109,8 +109,18 @@ const Selecionar = () => {
         </button>
       </div>
 
-      <Link href={`/jogo?letter=${selectedLetter}&attempt=${selectedAttempt}`}>
-        <button className="play">Jogar</button>
+      <Link
+        onClick={() => setLoading(true)}
+        href={`/jogo?letter=${selectedLetter}&attempt=${selectedAttempt}`}
+      >
+        {loading ? (
+          <button disabled={loading} className="play">
+            Carregando
+            <i className="fa-solid fa-spinner"></i>
+          </button>
+        ) : (
+          <button className="play">Jogar</button>
+        )}
       </Link>
     </div>
   );
